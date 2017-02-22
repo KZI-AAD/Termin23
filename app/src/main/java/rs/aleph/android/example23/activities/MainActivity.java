@@ -325,18 +325,18 @@ public class MainActivity extends AppCompatActivity implements OnProductSelected
             flags: 0 - flag koji opisuje sta da se radi sa intent-om kada se poziv desi
             detaljnije:https://developer.android.com/reference/android/app/PendingIntent.html#getService(android.content.Context, int, android.content.Intent, int)
         */
-        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
 
         //koristicemo sistemski AlarmManager pa je potrebno da dobijemo
         //njegovu instancu.
-        AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         //definisemo kako ce alarm manager da reaguje.
         //prvi parametar kaze da ce reagovati u rezimu ponavljanja
         //drugi parametar od kada krece da meri vreme
         //treci parametar na koliko jedinica vremena ce ragovati (minimalno 1min)
         //poslednji parametar nam govori koju akciju treba da preduzmemo kada se alarm iskljuci
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), ReviewerTools.calculateTimeTillNextSync(1), pintent);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), ReviewerTools.calculateTimeTillNextSync(1), pendingIntent);
 
         Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
