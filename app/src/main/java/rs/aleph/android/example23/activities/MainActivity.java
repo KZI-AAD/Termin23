@@ -317,6 +317,14 @@ public class MainActivity extends AppCompatActivity implements OnProductSelected
         intent.putExtra("STATUS", status);
 
         //definisemo manager i kazemo kada je potrebno da se ponavlja
+        /*
+        parametri:
+            context: this - u komkontekstu zelimo da se intent izvrsava
+            requestCode: 0 - nas jedinstev kod
+            intent: intent koji zelimo da se izvrsi kada dodje vreme
+            flags: 0 - flag koji opisuje sta da se radi sa intent-om kada se poziv desi
+            detaljnije:https://developer.android.com/reference/android/app/PendingIntent.html#getService(android.content.Context, int, android.content.Intent, int)
+        */
         PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
 
         //koristicemo sistemski AlarmManager pa je potrebno da dobijemo
